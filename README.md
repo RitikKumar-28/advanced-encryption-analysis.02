@@ -26,7 +26,7 @@ A secure file encryption/decryption tool and malware behavior analysis platform.
 
 2. **Run the application**:
    ```bash
-   python backend/app.py
+   python app.py
    ```
 
 3. **Access the platform**:
