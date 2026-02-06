@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SAFE | Advanced Cyber Security Platform</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <!-- Premium Ambient Scene -->
+    <div class="ambient-scene">
+        <div class="grid-overlay"></div>
+        <div class="glow-orb orb-1"></div>
+        <div class="glow-orb orb-2"></div>
+    </div>
+
+    <div class="container">
+        <!-- Modern Navigation -->
+        <header>
+            <div class="logo">
+                <div class="logo-dot"></div>
+                SAFE
+            </div>
+            <div class="api-status" id="apiStatus">
+                <div class="status-dot"></div>
+                SYSTEM ONLINE
+            </div>
+        </header>
+
+        <!-- Hero Section -->
+        <section class="hero">
+            <span class="hero-tag">Industrial Grade Security</span>
+            <h1>Protect Your <br> Digital Perimeter</h1>
+            <p>Advanced file encryption and behavior-based malware analysis sandbox for security professionals.</p>
+
+            <div class="quick-tech">
+                <div class="tech-item">
+                    <span class="tech-val">256-bit</span>
+                    <span class="tech-label">AES Standard</span>
+                </div>
+                <div class="tech-item">
+                    <span class="tech-val">100k</span>
+                    <span class="tech-label">KDF Rounds</span>
+                </div>
+                <div class="tech-item">
+                    <span class="tech-val">Local</span>
+                    <span class="tech-label">Zero-Knowledge</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Main Dashboard -->
+        <div class="dashboard-grid">
+            <!-- Encryption Card -->
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-title">
+                        <h2>Encrypt</h2>
+                        <p class="file-hint">Secure any file format</p>
+                    </div>
+                    <div class="icon-box">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                            <path d="m9 12 2 2 4-4"></path>
+                        </svg>
+                    </div>
+                </div>
+
+                <div class="upload-zone" id="encryptUploadArea">
+                    <input type="file" id="encryptFile" class="file-input">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                        <polyline points="17 8 12 3 7 8"></polyline>
+                        <line x1="12" y1="3" x2="12" y2="15"></line>
+                    </svg>
+                    <p>Drop file to shield or click to browse</p>
+                    <span class="file-selected-name" id="encryptFileName"></span>
+                </div>
+
+                <div class="form-group">
+                    <label>Algorithm</label>
+                    <select id="encryptAlgorithm">
+                        <optgroup label="Recommended">
+                            <option value="aes-256-gcm">AES-256-GCM (Authenticated)</option>
+                            <option value="chacha20">ChaCha20-Poly1305 (Modern)</option>
+                            <option value="sm4-cbc">SM4-CBC (High-Sec Standard)</option>
+                        </optgroup>
+                        <optgroup label="Standard Block">
+                            <option value="aes-256-cbc">AES-256-CBC</option>
+                            <option value="aes-192-cbc">AES-192-CBC</option>
+                            <option value="aes-128-cbc">AES-128-CBC</option>
+                        </optgroup>
+                        <optgroup label="Stream/Legacy">
+                            <option value="aes-256-ctr">AES-256-CTR</option>
+                            <option value="aes-256-cfb">AES-256-CFB</option>
+                            <option value="aes-256-ofb">AES-256-OFB</option>
+                        </optgroup>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>Master Password</label>
+                    <div class="control-wrap">
+                        <input type="password" id="encryptPassword" placeholder="Minimum 8 characters">
+                    </div>
+                </div>
+
+                <button class="btn btn-primary" onclick="encryptFile(event)">
+                    <span class="btn-text">Initialize Encryption</span>
+                    <span class="btn-loader hidden">⏳</span>
+                </button>
+                <div class="notification" id="encryptMessage"></div>
+            </div>
+
+            <!-- Decryption Card -->
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-title">
+                        <h2>Decrypt</h2>
+                        <p class="file-hint">Recover protected assets</p>
+                    </div>
+                    <div class="icon-box">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                            <path d="M7 11V7a5 5 0 0 1 9.9-1"></path>
+                        </svg>
+                    </div>
+                </div>
+
+                <div class="upload-zone" id="decryptUploadArea">
+                    <input type="file" id="decryptFile" class="file-input" accept=".enc">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                        <polyline points="7 10 12 15 17 10"></polyline>
+                        <line x1="12" y1="15" x2="12" y2="3"></line>
+                    </svg>
+                    <p>Drop .enc file to restore</p>
+                    <span class="file-selected-name" id="decryptFileName"></span>
+                </div>
+
+                <div class="form-group">
+                    <label>Algorithm Mode</label>
+                    <select id="decryptAlgorithm">
+                        <option value="auto">Auto-Detect Header (Recommended)</option>
+                        <optgroup label="Recommended">
+                            <option value="aes-256-gcm">AES-256-GCM (Authenticated)</option>
+                            <option value="chacha20">ChaCha20-Poly1305 (Modern)</option>
+                            <option value="sm4-cbc">SM4-CBC (High-Sec Standard)</option>
+                        </optgroup>
+                        <optgroup label="Standard Block">
+                            <option value="aes-256-cbc">AES-256-CBC</option>
+                            <option value="aes-192-cbc">AES-192-CBC</option>
+                            <option value="aes-128-cbc">AES-128-CBC</option>
+                        </optgroup>
+                        <optgroup label="Stream/Legacy">
+                            <option value="aes-256-ctr">AES-256-CTR</option>
+                            <option value="aes-256-cfb">AES-256-CFB</option>
+                            <option value="aes-256-ofb">AES-256-OFB</option>
+                        </optgroup>
+                    </select>
+                </div>
+                <div id="decryptAlgorithmHint" class="algo-hint">
+                    <span id="decryptAlgorithmHintText"></span>
+                </div>
+
+                <div class="form-group">
+                    <label>Decryption Password</label>
+                    <input type="password" id="decryptPassword" placeholder="Enter key">
+                </div>
+
+                <button class="btn btn-secondary" onclick="decryptFile(event)">
+                    <span class="btn-text">Execute Decryption</span>
+                    <span class="btn-loader hidden">⏳</span>
+                </button>
+                <div class="notification" id="decryptMessage"></div>
+            </div>
+
+            <!-- Sandbox Card (Full Width) -->
+            <div class="card sandbox-hero">
+                <div class="card-header">
+                    <div class="card-title">
+                        <h2>Behavioral Sandbox</h2>
+                        <p class="file-hint">Real-time malware analysis environment</p>
+                    </div>
+                    <div class="icon-box">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path
+                                d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z">
+                            </path>
+                            <polyline points="7.5 4.21 12 6.81 16.5 4.21"></polyline>
+                            <polyline points="7.5 19.79 7.5 14.61 3 12"></polyline>
+                            <polyline points="21 12 16.5 14.61 16.5 19.79"></polyline>
+                            <polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline>
+                            <line x1="12" y1="22.08" x2="12" y2="12"></line>
+                        </svg>
+                    </div>
+                </div>
+
+                <div class="sandbox-layout">
+                    <div class="sandbox-controls-pane">
+                        <div class="upload-zone" id="sandboxUploadArea">
+                            <input type="file" id="sandboxFile" class="file-input">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <circle cx="12" cy="12" r="10"></circle>
+                                <line x1="12" y1="8" x2="12" y2="16"></line>
+                                <line x1="8" y1="12" x2="16" y2="12"></line>
+                            </svg>
+                            <p>Upload suspicious sample</p>
+                            <span class="file-selected-name" id="sandboxFileName"></span>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Execution Timeout (sec)</label>
+                            <input type="number" id="sandboxTimeout" value="30" min="10" max="120">
+                        </div>
+
+                        <button class="btn btn-warning" onclick="startAnalysis(event)">
+                            <span class="btn-text">Scan for Threats</span>
+                            <span class="btn-loader hidden">⏳</span>
+                        </button>
+                    </div>
+
+                    <div class="analysis-view" id="analysisResults" style="display: none;">
+                        <div class="terminal-header">
+                            <div class="dot-group">
+                                <span class="dot red"></span>
+                                <span class="dot yellow"></span>
+                                <span class="dot green"></span>
+                            </div>
+                            <span class="term-title">SAFE_SANDBOX_V1.log</span>
+                        </div>
+                        <div class="log-feed" id="logsScroll">
+                            <div class="log-line" id="logTemplate" style="display: none;">
+                                <span class="log-ts"></span>
+                                <span class="log-cat"></span>
+                                <span class="log-msg"></span>
+                            </div>
+                        </div>
+                        <div class="summary-bar" id="resultsSummary"></div>
+                    </div>
+                </div>
+                <div class="notification" id="sandboxMessage"></div>
+            </div>
+        </div>
+
+        <!-- Unified Footer -->
+        <footer>
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h4>SAFE Security</h4>
+                    <p>Building tools for a more secure and private internet. Our tools process all sensitive data
+                        locally on your device.</p>
+                </div>
+                <div class="footer-col">
+                    <h4>Cryptography</h4>
+                    <ul>
+                        <li>AES-256</li>
+                        <li>ChaCha20</li>
+                        <li>Poly1305</li>
+                        <li>PBKDF2</li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Infrastructure</h4>
+                    <ul>
+                        <li>Python 3.10</li>
+                        <li>Flask API</li>
+                        <li>Vanilla CSS</li>
+                        <li>JS Core</li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Contact</h4>
+                    <p>Security Labs<br>127.0.0.1 Main Loop<br>Earth System</p>
+                </div>
+            </div>
+            <div class="disclaimer">
+                ⚠️ IMPORTANT: Encrypted data is unrecoverable without the master key. This tool is provided for
+                legitimate informational use only.
+            </div>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
