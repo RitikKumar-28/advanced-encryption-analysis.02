@@ -1,4 +1,4 @@
-# Cyber Security Suite - Advanced Encryption & Analysis
+# SAFE - Secure File Encryption Tool 
 
 A secure file encryption/decryption tool and malware behavior analysis platform. Built with Python (Flask) and a premium modern UI.
 
